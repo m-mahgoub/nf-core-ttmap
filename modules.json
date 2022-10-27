@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/ttmap",
-    "homePage": "https://github.com/nf-core/ttmap",
+    "name": "m-mahgoub/ttmap",
+    "homePage": "https://github.com/m-mahgoub/ttmap",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

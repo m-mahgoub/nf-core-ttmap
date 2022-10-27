@@ -11,11 +11,18 @@ WorkflowTtmap.initialise(params, log)
 
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
-def checkPathParamList = [ params.input, params.multiqc_config, params.fasta ]
+def checkPathParamList = [ params.input, params.multiqc_config, params.index_path ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
 
 // Check mandatory parameters
-if (params.input) { ch_input = file(params.input) } else { exit 1, 'Input samplesheet not specified!' }
+
+// Check Input Sample Sheet
+if (params.input) { ch_input = file(params.input) }
+else { exit 1, 'Input samplesheet not specified!' }
+
+// Check whether bwa2 index is provided
+if (params.index_path) { index_path =  params.index_path }
+else { exit 1, "bwa2 Index is not specified! Provide it via '--bwa2index path/to/bwa2/index' or via a detectable config file." }
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,6 +115,10 @@ workflow TTMAP {
     )
     multiqc_report = MULTIQC.out.report.toList()
     ch_versions    = ch_versions.mix(MULTIQC.out.versions)
+
+
+    // emit: Channel.empty()
+    emit: Channel.fromPath(index_path)
 }
 
 /*

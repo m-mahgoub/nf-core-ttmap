@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest an idea for the nf-core/ttmap pipeline
+description: Suggest an idea for the m-mahgoub/ttmap pipeline
 labels: enhancement
 body:
   - type: textarea

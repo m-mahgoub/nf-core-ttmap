@@ -1,4 +1,4 @@
-# nf-core/ttmap: Citations
+# m-mahgoub/ttmap: Citations
 
 ## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 

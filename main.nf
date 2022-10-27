@@ -1,24 +1,14 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/ttmap
+    m-mahgoub/nf-core-ttmap
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/ttmap
-
-    Website: https://nf-co.re/ttmap
-    Slack  : https://nfcore.slack.com/channels/ttmap
+    Github : https://github.com/m-mahgoub/nf-core-ttmap
 ----------------------------------------------------------------------------------------
 */
 
 nextflow.enable.dsl = 2
 
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    GENOME PARAMETER VALUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
-params.fasta = WorkflowMain.getGenomeAttribute(params, 'fasta')
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,10 +27,12 @@ WorkflowMain.initialise(workflow, params, log)
 include { TTMAP } from './workflows/ttmap'
 
 //
-// WORKFLOW: Run main nf-core/ttmap analysis pipeline
+// WORKFLOW: Run main m-mahgoub/ttmap analysis pipeline
 //
 workflow NFCORE_TTMAP {
     TTMAP ()
+    // Emit for testing purpose
+    emit: TTMAP.out
 }
 
 /*
@@ -55,6 +47,8 @@ workflow NFCORE_TTMAP {
 //
 workflow {
     NFCORE_TTMAP ()
+    // emit ch_test from imported workflow
+    NFCORE_TTMAP.out.view()
 }
 
 /*

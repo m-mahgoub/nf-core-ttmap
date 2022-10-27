@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/ttmap/master/assets/schema_input.json",
-    "title": "nf-core/ttmap pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/m-mahgoub/ttmap/master/assets/schema_input.json",
+    "title": "m-mahgoub/ttmap pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

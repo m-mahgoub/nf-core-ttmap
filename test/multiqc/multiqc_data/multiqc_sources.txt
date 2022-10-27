@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SPT5_T15_rep1_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/9/SPT5_T15_rep1_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_T15_rep2_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/11/SPT5_T15_rep2_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_T0_rep2_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/7/SPT5_T0_rep2_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_T0_rep2_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/6/SPT5_T0_rep2_T1_1_fastqc.zip
+FastQC	all_sections	SPT5_T15_rep2_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/10/SPT5_T15_rep2_T1_1_fastqc.zip
+FastQC	all_sections	SPT5_T15_rep1_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/8/SPT5_T15_rep1_T1_1_fastqc.zip
+FastQC	all_sections	SPT5_T0_rep1_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/4/SPT5_T0_rep1_T1_1_fastqc.zip
+FastQC	all_sections	SPT5_INPUT_rep2_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/15/SPT5_INPUT_rep2_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_INPUT_rep1_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/12/SPT5_INPUT_rep1_T1_1_fastqc.zip
+FastQC	all_sections	SPT5_INPUT_rep1_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/13/SPT5_INPUT_rep1_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_T0_rep1_T1_2	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/5/SPT5_T0_rep1_T1_2_fastqc.zip
+FastQC	all_sections	SPT5_INPUT_rep2_T1_1	/Users/mohamedmahgoub/Documents/github/nf-core-ttmap/work/9b/02f8015167d4b9c5c377b59a45a62d/14/SPT5_INPUT_rep2_T1_1_fastqc.zip

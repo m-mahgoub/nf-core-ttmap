@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the workflow/ttmap.nf in the nf-core/ttmap pipeline
+// This file holds several functions specific to the workflow/ttmap.nf in the m-mahgoub/ttmap pipeline
 //
 
 import groovy.text.SimpleTemplateEngine
@@ -13,8 +13,8 @@ class WorkflowTtmap {
         genomeExistsError(params, log)
 
 
-        if (!params.fasta) {
-            log.error "Genome fasta file not specified with e.g. '--fasta genome.fa' or via a detectable config file."
+        if (!params.index_path) {
+            log.error "bwa2 index path not specified with e.g. '--index_path path/to/index' or via a detectable config file."
             System.exit(1)
         }
     }

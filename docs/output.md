@@ -1,4 +1,4 @@
-# nf-core/ttmap: Output
+# m-mahgoub/ttmap: Output
 
 ## Introduction
 

@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the main.nf workflow in the nf-core/ttmap pipeline
+// This file holds several functions specific to the main.nf workflow in the m-mahgoub/ttmap pipeline
 //
 
 class WorkflowMain {
