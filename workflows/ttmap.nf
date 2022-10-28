@@ -55,9 +55,11 @@ include { INPUT_CHECK } from '../subworkflows/local/input_check'
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { FASTQC                      } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
+include { SAMTOOLS_BAM2FQ             } from '../modules/nf-core/samtools/bam2fq/main.nf'
+include { BWAMEM2_MEM                 } from '../modules/nf-core/bwamem2/mem/main.nf'
+include { SAMTOOLS_INDEX              } from '../modules/nf-core/samtools/index/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -80,45 +82,87 @@ workflow TTMAP {
     )
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
 
+
+   //
+    // MODULE: Run bam2fq
     //
-    // MODULE: Run FastQC
-    //
-    FASTQC (
-        INPUT_CHECK.out.reads
+    SAMTOOLS_BAM2FQ (
+        INPUT_CHECK.out.bams,
+        true
     )
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+    ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions)
+
+
+    //
+    // Channel Operation: Make A channel emitting mate and fastq files (only fq1 and fq2, not others/singleton)
+    //
+    SAMTOOLS_BAM2FQ
+    .out
+    .reads
+    .map { meta, fastqs -> [meta, [fastqs[0], fastqs[1]]]}
+    .set { ch_fq }
+
+
+
+    //
+    // MODULE: Run bwa2mem
+    //
+    BWAMEM2_MEM (
+        ch_fq,
+        [[], params.index_path],
+        true
+    )
+    ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions)
+
+
+    //
+    // MODULE: Run samtools index
+    //
+    SAMTOOLS_INDEX (
+        BWAMEM2_MEM.out.bam
+    )
+    ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
+
+
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')
     )
 
-    //
-    // MODULE: MultiQC
-    //
-    workflow_summary    = WorkflowTtmap.paramsSummaryMultiqc(workflow, summary_params)
-    ch_workflow_summary = Channel.value(workflow_summary)
 
-    methods_description    = WorkflowTtmap.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description)
-    ch_methods_description = Channel.value(methods_description)
 
-    ch_multiqc_files = Channel.empty()
-    ch_multiqc_files = ch_multiqc_files.mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
-    ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml'))
-    ch_multiqc_files = ch_multiqc_files.mix(CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect())
-    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]}.ifEmpty([]))
+    // CUSTOM_DUMPSOFTWAREVERSIONS (
+    //     ch_versions.unique().collectFile(name: 'collated_versions.yml')
+    // )
 
-    MULTIQC (
-        ch_multiqc_files.collect(),
-        ch_multiqc_config.collect().ifEmpty([]),
-        ch_multiqc_custom_config.collect().ifEmpty([]),
-        ch_multiqc_logo.collect().ifEmpty([])
-    )
-    multiqc_report = MULTIQC.out.report.toList()
-    ch_versions    = ch_versions.mix(MULTIQC.out.versions)
+    // //
+    // // MODULE: MultiQC
+    // //
+    // workflow_summary    = WorkflowTtmap.paramsSummaryMultiqc(workflow, summary_params)
+    // ch_workflow_summary = Channel.value(workflow_summary)
+
+    // methods_description    = WorkflowTtmap.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description)
+    // ch_methods_description = Channel.value(methods_description)
+
+    // ch_multiqc_files = Channel.empty()
+    // ch_multiqc_files = ch_multiqc_files.mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
+    // ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml'))
+    // ch_multiqc_files = ch_multiqc_files.mix(CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect())
+    // ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]}.ifEmpty([]))
+
+    // MULTIQC (
+    //     ch_multiqc_files.collect(),
+    //     ch_multiqc_config.collect().ifEmpty([]),
+    //     ch_multiqc_custom_config.collect().ifEmpty([]),
+    //     ch_multiqc_logo.collect().ifEmpty([])
+    // )
+    // multiqc_report = MULTIQC.out.report.toList()
+    // ch_versions    = ch_versions.mix(MULTIQC.out.versions)
 
 
     // emit: Channel.empty()
-    emit: Channel.fromPath(index_path)
+    // emit: INPUT_CHECK.out.bams
+    emit: BWAMEM2_MEM.out.bam
 }
 
 /*
