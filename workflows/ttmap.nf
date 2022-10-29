@@ -60,6 +60,8 @@ include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoft
 include { SAMTOOLS_BAM2FQ             } from '../modules/nf-core/samtools/bam2fq/main.nf'
 include { BWAMEM2_MEM                 } from '../modules/nf-core/bwamem2/mem/main.nf'
 include { SAMTOOLS_INDEX              } from '../modules/nf-core/samtools/index/main.nf'
+include { SAMTOOLS_FLAGSTAT           } from '../modules/nf-core/samtools/flagstat/main.nf'
+
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,7 +105,6 @@ workflow TTMAP {
     .set { ch_fq }
 
 
-
     //
     // MODULE: Run bwa2mem
     //
@@ -124,6 +125,25 @@ workflow TTMAP {
     ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
 
 
+    //
+    // Channel Operation: Make A channel emitting bam and bai files
+    //
+    BWAMEM2_MEM
+    .out
+    .bam
+    .join( SAMTOOLS_INDEX.out.bai )
+    .set { ch_bam_bai }
+
+
+        //
+    // MODULE: Run samtools stats
+    //
+    SAMTOOLS_FLAGSTAT (
+        ch_bam_bai
+    )
+    ch_versions = ch_versions.mix(SAMTOOLS_FLAGSTAT.out.versions)
+
+
 
     CUSTOM_DUMPSOFTWAREVERSIONS (
         ch_versions.unique().collectFile(name: 'collated_versions.yml')
@@ -131,38 +151,33 @@ workflow TTMAP {
 
 
 
-    // CUSTOM_DUMPSOFTWAREVERSIONS (
-    //     ch_versions.unique().collectFile(name: 'collated_versions.yml')
-    // )
+    //
+    // MODULE: MultiQC
+    //
+    workflow_summary    = WorkflowTtmap.paramsSummaryMultiqc(workflow, summary_params)
+    ch_workflow_summary = Channel.value(workflow_summary)
 
-    // //
-    // // MODULE: MultiQC
-    // //
-    // workflow_summary    = WorkflowTtmap.paramsSummaryMultiqc(workflow, summary_params)
-    // ch_workflow_summary = Channel.value(workflow_summary)
+    methods_description    = WorkflowTtmap.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description)
+    ch_methods_description = Channel.value(methods_description)
 
-    // methods_description    = WorkflowTtmap.methodsDescriptionText(workflow, ch_multiqc_custom_methods_description)
-    // ch_methods_description = Channel.value(methods_description)
-
-    // ch_multiqc_files = Channel.empty()
-    // ch_multiqc_files = ch_multiqc_files.mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
-    // ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml'))
-    // ch_multiqc_files = ch_multiqc_files.mix(CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect())
+    ch_multiqc_files = Channel.empty()
+    ch_multiqc_files = ch_multiqc_files.mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
+    ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml'))
+    ch_multiqc_files = ch_multiqc_files.mix(CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect())
+    ch_multiqc_files = ch_multiqc_files.mix(SAMTOOLS_FLAGSTAT.out.flagstat.collect{it[1]}.ifEmpty([]))
     // ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]}.ifEmpty([]))
 
-    // MULTIQC (
-    //     ch_multiqc_files.collect(),
-    //     ch_multiqc_config.collect().ifEmpty([]),
-    //     ch_multiqc_custom_config.collect().ifEmpty([]),
-    //     ch_multiqc_logo.collect().ifEmpty([])
-    // )
-    // multiqc_report = MULTIQC.out.report.toList()
-    // ch_versions    = ch_versions.mix(MULTIQC.out.versions)
+    MULTIQC (
+        ch_multiqc_files.collect(),
+        ch_multiqc_config.collect().ifEmpty([]),
+        ch_multiqc_custom_config.collect().ifEmpty([]),
+        ch_multiqc_logo.collect().ifEmpty([])
+    )
+    multiqc_report = MULTIQC.out.report.toList()
+    ch_versions    = ch_versions.mix(MULTIQC.out.versions)
 
-
-    // emit: Channel.empty()
-    // emit: INPUT_CHECK.out.bams
-    emit: BWAMEM2_MEM.out.bam
+// emit : BWAMEM2_MEM.out.bam
+emit : SAMTOOLS_FLAGSTAT.out.flagstat
 }
 
 /*
@@ -180,7 +195,6 @@ workflow.onComplete {
         NfcoreTemplate.adaptivecard(workflow, params, summary_params, projectDir, log)
     }
 }
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     THE END

@@ -25,6 +25,7 @@ def create_bam_channel(LinkedHashMap row) {
     // create meta map
     def meta = [:]
     meta.id         = row.sample
+    meta.group         = row.group
     meta.single_end = row.single_end.toBoolean()
     // add path of the bam file to the meta map
     bam_meta = [ meta, file(row.bam) ]
