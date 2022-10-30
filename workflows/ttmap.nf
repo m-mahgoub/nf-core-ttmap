@@ -176,8 +176,8 @@ workflow TTMAP {
     multiqc_report = MULTIQC.out.report.toList()
     ch_versions    = ch_versions.mix(MULTIQC.out.versions)
 
-// emit : BWAMEM2_MEM.out.bam
-emit : SAMTOOLS_FLAGSTAT.out.flagstat
+// // emit : BWAMEM2_MEM.out.bam
+// emit : SAMTOOLS_FLAGSTAT.out.flagstat
 }
 
 /*
