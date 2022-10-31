@@ -11,7 +11,7 @@ WorkflowTtmap.initialise(params, log)
 
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
-def checkPathParamList = [ params.input, params.multiqc_config, params.index_path ]
+def checkPathParamList = [ params.input, params.multiqc_config, params.fasta, params.index_path ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
 
 // Check mandatory parameters
@@ -19,6 +19,10 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 // Check Input Sample Sheet
 if (params.input) { ch_input = file(params.input) }
 else { exit 1, 'Input samplesheet not specified!' }
+
+// Check Genome Reference file
+if (params.fasta) { ch_fasta = file(params.fasta) }
+else { exit 1, 'Genome Fasta not specified!' }
 
 // Check whether bwa2 index is provided
 if (params.index_path) { index_path =  params.index_path }
@@ -58,9 +62,9 @@ include { INPUT_CHECK } from '../subworkflows/local/input_check'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 include { SAMTOOLS_BAM2FQ             } from '../modules/nf-core/samtools/bam2fq/main.nf'
-include { BWAMEM2_MEM                 } from '../modules/nf-core/bwamem2/mem/main.nf'
-include { SAMTOOLS_INDEX              } from '../modules/nf-core/samtools/index/main.nf'
+include { BWAMEM2_MEM                 } from '../modules/local/BWAMEM2_MEM.nf'
 include { SAMTOOLS_FLAGSTAT           } from '../modules/nf-core/samtools/flagstat/main.nf'
+include { SAMTOOLS_SORT               } from '../modules/nf-core/samtools/sort/main.nf'
 
 
 /*
@@ -86,10 +90,20 @@ workflow TTMAP {
 
 
    //
+    // MODULE: Run samtools sort ----------
+    //
+    SAMTOOLS_SORT (
+        INPUT_CHECK.out.bams
+    )
+    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
+
+
+
+   //
     // MODULE: Run bam2fq
     //
     SAMTOOLS_BAM2FQ (
-        INPUT_CHECK.out.bams,
+        SAMTOOLS_SORT.out.bam,
         true
     )
     ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions)
@@ -110,36 +124,20 @@ workflow TTMAP {
     //
     BWAMEM2_MEM (
         ch_fq,
-        [[], params.index_path],
-        true
+        [[], ch_fasta],
+        [[], params.index_path]
     )
     ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions)
 
 
-    //
-    // MODULE: Run samtools index
-    //
-    SAMTOOLS_INDEX (
-        BWAMEM2_MEM.out.bam
-    )
-    ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
+
 
 
     //
-    // Channel Operation: Make A channel emitting bam and bai files
-    //
-    BWAMEM2_MEM
-    .out
-    .bam
-    .join( SAMTOOLS_INDEX.out.bai )
-    .set { ch_bam_bai }
-
-
-        //
     // MODULE: Run samtools stats
     //
     SAMTOOLS_FLAGSTAT (
-        ch_bam_bai
+        BWAMEM2_MEM.out.cram
     )
     ch_versions = ch_versions.mix(SAMTOOLS_FLAGSTAT.out.versions)
 
@@ -165,7 +163,6 @@ workflow TTMAP {
     ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml'))
     ch_multiqc_files = ch_multiqc_files.mix(CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect())
     ch_multiqc_files = ch_multiqc_files.mix(SAMTOOLS_FLAGSTAT.out.flagstat.collect{it[1]}.ifEmpty([]))
-    // ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]}.ifEmpty([]))
 
     MULTIQC (
         ch_multiqc_files.collect(),
@@ -176,7 +173,7 @@ workflow TTMAP {
     multiqc_report = MULTIQC.out.report.toList()
     ch_versions    = ch_versions.mix(MULTIQC.out.versions)
 
-// // emit : BWAMEM2_MEM.out.bam
+emit : BWAMEM2_MEM.out.cram
 // emit : SAMTOOLS_FLAGSTAT.out.flagstat
 }
 
