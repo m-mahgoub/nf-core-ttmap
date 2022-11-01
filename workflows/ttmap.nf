@@ -11,7 +11,7 @@ WorkflowTtmap.initialise(params, log)
 
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
-def checkPathParamList = [ params.input, params.multiqc_config, params.fasta, params.index_path ]
+def checkPathParamList = [ params.input, params.multiqc_config, params.new_fasta, params.old_fasta, params.index_path ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
 
 // Check mandatory parameters
@@ -20,9 +20,12 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 if (params.input) { ch_input = file(params.input) }
 else { exit 1, 'Input samplesheet not specified!' }
 
-// Check Genome Reference file
-if (params.fasta) { ch_fasta = file(params.fasta) }
-else { exit 1, 'Genome Fasta not specified!' }
+// Check Genome References fasta
+if (params.old_fasta) { ch_old_fasta = file(params.old_fasta) }
+else { exit 1, 'Genome old_fasta (for new mapping) not specified!' }
+
+if (params.new_fasta) { ch_new_fasta = file(params.new_fasta) }
+else { exit 1, 'Genome new_fasta (for new mapping) not specified!' }
 
 // Check whether bwa2 index is provided
 if (params.index_path) { index_path =  params.index_path }
@@ -91,7 +94,7 @@ workflow TTMAP {
     //
     CRAM2FQ (
         INPUT_CHECK.out.bams,
-        [[], ch_fasta]
+        [[], ch_old_fasta]
     )
     ch_versions = ch_versions.mix(CRAM2FQ.out.versions)
 
@@ -101,7 +104,7 @@ workflow TTMAP {
     //
     BWAMEM2_MEM (
         CRAM2FQ.out.reads,
-        [[], ch_fasta],
+        [[], ch_new_fasta],
         [[], params.index_path]
     )
     ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions)
