@@ -61,11 +61,9 @@ include { INPUT_CHECK } from '../subworkflows/local/input_check'
 //
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
-include { SAMTOOLS_BAM2FQ             } from '../modules/nf-core/samtools/bam2fq/main.nf'
+include { CRAM2FQ                     } from '../modules/local/CRAM2FQ.nf'
 include { BWAMEM2_MEM                 } from '../modules/local/BWAMEM2_MEM.nf'
 include { SAMTOOLS_FLAGSTAT           } from '../modules/nf-core/samtools/flagstat/main.nf'
-include { SAMTOOLS_SORT               } from '../modules/nf-core/samtools/sort/main.nf'
-
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -88,48 +86,25 @@ workflow TTMAP {
     )
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
 
-
    //
-    // MODULE: Run samtools sort ----------
+    // MODULE: Run CRAM2FQ
     //
-    SAMTOOLS_SORT (
-        INPUT_CHECK.out.bams
+    CRAM2FQ (
+        INPUT_CHECK.out.bams,
+        [[], ch_fasta]
     )
-    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
-
-
-
-   //
-    // MODULE: Run bam2fq
-    //
-    SAMTOOLS_BAM2FQ (
-        SAMTOOLS_SORT.out.bam,
-        true
-    )
-    ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions)
-
-
-    //
-    // Channel Operation: Make A channel emitting mate and fastq files (only fq1 and fq2, not others/singleton)
-    //
-    SAMTOOLS_BAM2FQ
-    .out
-    .reads
-    .map { meta, fastqs -> [meta, [fastqs[0], fastqs[1]]]}
-    .set { ch_fq }
+    ch_versions = ch_versions.mix(CRAM2FQ.out.versions)
 
 
     //
     // MODULE: Run bwa2mem
     //
     BWAMEM2_MEM (
-        ch_fq,
+        CRAM2FQ.out.reads,
         [[], ch_fasta],
         [[], params.index_path]
     )
     ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions)
-
-
 
 
 
@@ -173,7 +148,7 @@ workflow TTMAP {
     multiqc_report = MULTIQC.out.report.toList()
     ch_versions    = ch_versions.mix(MULTIQC.out.versions)
 
-emit : BWAMEM2_MEM.out.cram
+// emit : BWAMEM2_MEM.out.cram
 // emit : SAMTOOLS_FLAGSTAT.out.flagstat
 }
 

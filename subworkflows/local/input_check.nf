@@ -16,7 +16,7 @@ workflow INPUT_CHECK {
         .set { bams }
 
     emit:
-    bams                                     // channel: [ val(meta), [ reads ] ]
+    bams                                     // channel: [ val(meta), [ bams ] ]
     versions = SAMPLESHEET_CHECK.out.versions // channel: [ versions.yml ]
 }
 

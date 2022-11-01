@@ -32,7 +32,7 @@ include { TTMAP } from './workflows/ttmap'
 workflow NFCORE_TTMAP {
     TTMAP ()
     // Emit for testing purpose
-    emit: TTMAP.out
+    // emit: TTMAP.out
 }
 
 /*
@@ -48,7 +48,7 @@ workflow NFCORE_TTMAP {
 workflow {
     NFCORE_TTMAP ()
     // emit ch_test from imported workflow
-    NFCORE_TTMAP.out.view()
+    // NFCORE_TTMAP.out.view()
 }
 
 /*

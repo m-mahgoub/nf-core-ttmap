@@ -1,6 +1,6 @@
-process SAMTOOLS_SORT {
+process CRAM2FQ {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_high'
 
     conda (params.enable_conda ? "bioconda::samtools=1.15.1" : null)
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -9,10 +9,10 @@ process SAMTOOLS_SORT {
 
     input:
     tuple val(meta), path(bam)
+    tuple val(meta2), path(fasta)
 
     output:
-    tuple val(meta), path("*.bam"), emit: bam
-    tuple val(meta), path("*.csi"), emit: csi, optional: true
+    tuple val(meta), path("*.fastq.gz"), emit: reads
     path  "versions.yml"          , emit: versions
 
     when:
@@ -21,9 +21,19 @@ process SAMTOOLS_SORT {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
     """
-    samtools sort $args -@ $task.cpus -o ${prefix}.bam -T $prefix $bam
+
+    samtools collate \\
+    --threads ${task.cpus-1} \\
+    -o ${prefix}.sorted.bam \\
+    --reference $fasta \\
+    $bam &&
+
+    samtools fastq \\
+    --threads ${task.cpus-1} \\
+    -1 ${prefix}_1.fastq.gz -2 ${prefix}_2.fastq.gz \\
+    ${prefix}.sorted.bam
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')

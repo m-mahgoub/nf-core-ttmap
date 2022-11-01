@@ -3,3 +3,4 @@ rm -rf work
 rm -rf .nextflow
 rm -rf test
 rm -rf .nextflow.log*
+rm -rf ../scratch

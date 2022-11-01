@@ -1,3 +1,2 @@
-"NFCORE_TTMAP:TTMAP:BWAMEM2_MEM":
-    bwamem2: 2.2.1
+"NFCORE_TTMAP:TTMAP:CRAM2FQ":
     samtools: 1.15.1 
