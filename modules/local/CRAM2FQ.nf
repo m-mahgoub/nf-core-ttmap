@@ -27,12 +27,14 @@ process CRAM2FQ {
     --threads ${task.cpus-1} \\
     -o ${prefix}.sorted.bam \\
     --reference $fasta \\
-    $bam &&
+    $bam tmp &&
 
     samtools fastq \\
     --threads ${task.cpus-1} \\
     -1 ${prefix}_1.fastq.gz -2 ${prefix}_2.fastq.gz \\
-    ${prefix}.sorted.bam
+    ${prefix}.sorted.bam &&
+
+    rm ${prefix}.sorted.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
