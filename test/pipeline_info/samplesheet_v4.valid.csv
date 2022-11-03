@@ -1,0 +1,5 @@
+sample,bam,single_end,group,type
+sample1,https://raw.githubusercontent.com/m-mahgoub/test-datasets/main/nf-core-ttmap/test/bam/NA12878_mito_2.bam,FALSE,treatment,bam
+sample19,https://raw.githubusercontent.com/m-mahgoub/test-datasets/main/nf-core-ttmap/test/bam/NA12878_mito_4.bam,FALSE,control,bam
+sample5,https://raw.githubusercontent.com/m-mahgoub/test-datasets/main/nf-core-ttmap/test/bam/NA12878_mito_2.cram,FALSE,control,cram
+sample7,https://raw.githubusercontent.com/m-mahgoub/test-datasets/main/nf-core-ttmap/test/bam/NA12878_mito_4.cram,FALSE,treatment,cram

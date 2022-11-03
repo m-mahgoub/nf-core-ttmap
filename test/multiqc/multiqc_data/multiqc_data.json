@@ -1,0 +1,632 @@
+{
+    "report_data_sources": {
+        "Samtools": {
+            "flagstat": {
+                "sample1": "/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/6/sample1.flagstat",
+                "sample5": "/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/4/sample5.flagstat",
+                "sample7": "/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/3/sample7.flagstat",
+                "sample19": "/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/5/sample19.flagstat"
+            }
+        }
+    },
+    "report_general_stats_data": [
+        {
+            "sample1": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample5": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample7": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample19": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            }
+        }
+    ],
+    "report_general_stats_headers": [
+        {
+            "flagstat_total": {
+                "title": "M Reads",
+                "description": "Total reads in the bam file (millions)",
+                "min": 0,
+                "modify": 1e-06,
+                "shared_key": "read_count",
+                "placement": 100.0,
+                "hidden": true,
+                "namespace": "Samtools",
+                "rid": "mqc-generalstats-samtools-flagstat_total",
+                "scale": "GnBu",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "dmax": 0.323802,
+                "dmin": 0.0
+            },
+            "mapped_passed": {
+                "title": "M Reads Mapped",
+                "description": "Reads Mapped in the bam file (millions)",
+                "min": 0,
+                "modify": 1e-06,
+                "shared_key": "read_count",
+                "placement": 101.0,
+                "namespace": "Samtools",
+                "rid": "mqc-generalstats-samtools-mapped_passed",
+                "scale": "GnBu",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "dmax": 0.323802,
+                "dmin": 0.0
+            }
+        }
+    ],
+    "report_multiqc_command": "/Users/mohamedmahgoub/Documents/apps/miniconda3/bin/multiqc --force --config multiqc_config.yml .",
+    "report_plot_data": {
+        "samtools-flagstat-dp": {
+            "plot_type": "beeswarm",
+            "samples": [
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ],
+                [
+                    "sample1",
+                    "sample5",
+                    "sample7",
+                    "sample19"
+                ]
+            ],
+            "datasets": [
+                [
+                    0.323802,
+                    0.323802,
+                    0.323802,
+                    0.323802
+                ],
+                [
+                    0.323802,
+                    0.323802,
+                    0.323802,
+                    0.323802
+                ],
+                [
+                    0.321585,
+                    0.321585,
+                    0.321585,
+                    0.321585
+                ],
+                [
+                    0.000946,
+                    0.000946,
+                    0.000946,
+                    0.000946
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    0.322856,
+                    0.322856,
+                    0.322856,
+                    0.322856
+                ],
+                [
+                    0.30291399999999996,
+                    0.30291399999999996,
+                    0.30291399999999996,
+                    0.30291399999999996
+                ],
+                [
+                    0.318424,
+                    0.318424,
+                    0.318424,
+                    0.318424
+                ],
+                [
+                    0.002215,
+                    0.002215,
+                    0.002215,
+                    0.002215
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            ],
+            "categories": [
+                {
+                    "namespace": "",
+                    "title": "Total Reads",
+                    "description": "Total Reads",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Total Passed QC",
+                    "description": "Total Passed QC",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Mapped",
+                    "description": "Mapped",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Supplementary Alignments",
+                    "description": "Supplementary Alignments",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Duplicates",
+                    "description": "Duplicates",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Paired in Sequencing",
+                    "description": "Paired in Sequencing",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Properly Paired",
+                    "description": "Properly Paired",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Self and mate mapped",
+                    "description": "Reads with itself and mate mapped",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Singletons",
+                    "description": "Singletons",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Mate mapped to diff chr",
+                    "description": "Mate mapped to different chromosome",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                },
+                {
+                    "namespace": "",
+                    "title": "Diff chr (mapQ >= 5)",
+                    "description": "Mate mapped to different chromosome (mapQ >= 5)",
+                    "max": 0.323802,
+                    "min": 0.0,
+                    "suffix": "M reads",
+                    "decimalPlaces": 2,
+                    "bordercol": "rgb(55,126,184)"
+                }
+            ]
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_samtools_flagstat": {
+            "sample1": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample5": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample7": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            },
+            "sample19": {
+                "total_passed": 323802,
+                "total_failed": 0,
+                "secondary_passed": 0,
+                "secondary_failed": 0,
+                "supplementary_passed": 946,
+                "supplementary_failed": 0,
+                "duplicates_passed": 0,
+                "duplicates_failed": 0,
+                "mapped_passed": 321585,
+                "mapped_failed": 0,
+                "mapped_passed_pct": 99.32,
+                "mapped_failed_pct": NaN,
+                "paired in sequencing_passed": 322856,
+                "paired in sequencing_failed": 0,
+                "read1_passed": 161428,
+                "read1_failed": 0,
+                "read2_passed": 161428,
+                "read2_failed": 0,
+                "properly paired_passed": 302914,
+                "properly paired_failed": 0,
+                "properly paired_passed_pct": 93.82,
+                "properly paired_failed_pct": NaN,
+                "with itself and mate mapped_passed": 318424,
+                "with itself and mate mapped_failed": 0,
+                "singletons_passed": 2215,
+                "singletons_failed": 0,
+                "singletons_passed_pct": 0.69,
+                "singletons_failed_pct": NaN,
+                "with mate mapped to a different chr_passed": 0,
+                "with mate mapped to a different chr_failed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_passed": 0,
+                "with mate mapped to a different chr (mapQ >= 5)_failed": 0,
+                "flagstat_total": 323802
+            }
+        },
+        "multiqc_general_stats": {
+            "sample1": {
+                "Samtools_mqc-generalstats-samtools-flagstat_total": 323802,
+                "Samtools_mqc-generalstats-samtools-mapped_passed": 321585
+            },
+            "sample5": {
+                "Samtools_mqc-generalstats-samtools-flagstat_total": 323802,
+                "Samtools_mqc-generalstats-samtools-mapped_passed": 321585
+            },
+            "sample7": {
+                "Samtools_mqc-generalstats-samtools-flagstat_total": 323802,
+                "Samtools_mqc-generalstats-samtools-mapped_passed": 321585
+            },
+            "sample19": {
+                "Samtools_mqc-generalstats-samtools-flagstat_total": 323802,
+                "Samtools_mqc-generalstats-samtools-mapped_passed": 321585
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4"
+    ],
+    "config_analysis_dir": [
+        "."
+    ],
+    "config_creation_date": "2022-11-03, 11:18 CDT",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": "This report has been generated by the <a href=\"https://github.com/m-mahgoub/ttmap\" target=\"_blank\">m-mahgoub/ttmap</a> analysis pipeline. For information about how to interpret these results, please see the <a href=\"https://nf-co.re/ttmap\" target=\"_blank\">documentation</a>.\n",
+    "config_report_header_info": null,
+    "config_script_path": "/Users/mohamedmahgoub/Documents/apps/miniconda3/lib/python3.9/site-packages/multiqc/utils",
+    "config_short_version": "1.13",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.13"
+}

@@ -25,16 +25,14 @@ process CRAM2FQ {
 
     samtools collate \\
     --threads ${task.cpus-1} \\
-    -o ${prefix}.sorted.bam \\
+    -O \
     --reference $fasta \\
-    $bam tmp &&
-
-    samtools fastq \\
+    $bam tmp \
+    | samtools fastq \\
     --threads ${task.cpus-1} \\
     -1 ${prefix}_1.fastq.gz -2 ${prefix}_2.fastq.gz \\
-    ${prefix}.sorted.bam &&
+    -
 
-    rm ${prefix}.sorted.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

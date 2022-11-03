@@ -1,0 +1,15 @@
+BWAMEM2_MEM:
+  bwamem2: 2.2.1
+  samtools: 1.15.1
+CRAM2FQ:
+  samtools: 1.15.1
+CUSTOM_DUMPSOFTWAREVERSIONS:
+  python: 3.9.13
+  yaml: '6.0'
+SAMPLESHEET_CHECK:
+  python: 3.9.13
+SAMTOOLS_FLAGSTAT:
+  samtools: 1.15.1
+Workflow:
+  Nextflow: 22.04.5
+  m-mahgoub/ttmap: 1.0dev

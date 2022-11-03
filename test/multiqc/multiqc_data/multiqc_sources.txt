@@ -1,0 +1,5 @@
+Module	Section	Sample Name	Source
+Samtools	flagstat	sample1	/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/6/sample1.flagstat
+Samtools	flagstat	sample5	/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/4/sample5.flagstat
+Samtools	flagstat	sample7	/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/3/sample7.flagstat
+Samtools	flagstat	sample19	/Users/mohamedmahgoub/Documents/github/scratch/f7/3105d2c88788ecdebb048f47e204b4/5/sample19.flagstat

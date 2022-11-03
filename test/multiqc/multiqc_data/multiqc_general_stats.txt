@@ -1,0 +1,5 @@
+Sample	Samtools_mqc-generalstats-samtools-flagstat_total	Samtools_mqc-generalstats-samtools-mapped_passed
+sample1	323802	321585
+sample19	323802	321585
+sample5	323802	321585
+sample7	323802	321585
